@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="480" viewBox="0 0 940 480">
+  <rect width="940" height="480" fill="#0f1419"/>
+  <text x="40" y="40" fill="#ffc174" font-family="Georgia, serif" font-size="22" font-weight="600">Two Research &amp; Application Horizons</text>
+  <text x="40" y="62" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="12">Same telemetry substrate · two research programs</text>
+
+  <!-- Center seed -->
+  <path d="M 360 180 Q 358 178 470 182 Q 580 178 578 190 L 576 260 Q 578 276 470 272 Q 362 276 362 260 Z" fill="#12171d" stroke="#d8c3ad" stroke-width="2.2"/>
+  <text x="470" y="220" text-anchor="middle" fill="#d8c3ad" font-family="Georgia, serif" font-size="14">Gaze-Adaptive GenUI Prototype</text>
+  <text x="470" y="242" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">telemetry · constrained GenUI · agency</text>
+
+  <!-- Branch 1 -->
+  <path d="M 350 210 Q 220 160 80 140" fill="none" stroke="#ffc174" stroke-width="2" stroke-dasharray="6 4"/>
+  <path d="M 40 110 Q 38 108 300 112 Q 560 108 300 112" fill="none"/>
+  <path d="M 36 90 Q 34 88 300 92 Q 420 88 418 102 L 416 300 Q 418 318 228 314 Q 38 318 38 300 Z" fill="#1a1510" stroke="#ffc174" stroke-width="2.3"/>
+  <text x="228" y="130" text-anchor="middle" fill="#ffc174" font-family="Georgia, serif" font-size="15">1 · Real-Time Individual</text>
+  <text x="228" y="152" text-anchor="middle" fill="#ffc174" font-family="Georgia, serif" font-size="15">Personalization</text>
+  <text x="228" y="190" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">Ability-Based Assistive UI</text>
+  <text x="228" y="214" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">Browser accessibility proxy for</text>
+  <text x="228" y="234" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">diverse motor abilities &amp; fatigue</text>
+  <text x="228" y="268" text-anchor="middle" fill="#6ec8ff" font-family="system-ui,sans-serif" font-size="11">→ personal AdaptedUISpec</text>
+  <text x="228" y="290" text-anchor="middle" fill="#6ec8ff" font-family="system-ui,sans-serif" font-size="11">→ dual input-policy retune</text>
+
+  <!-- Branch 2 -->
+  <path d="M 590 210 Q 720 160 860 140" fill="none" stroke="#4edea3" stroke-width="2" stroke-dasharray="6 4"/>
+  <path d="M 520 90 Q 518 88 900 92 Q 902 102 900 300 Q 902 318 710 314 Q 522 318 522 300 Z" fill="#0f1a16" stroke="#4edea3" stroke-width="2.3"/>
+  <text x="710" y="130" text-anchor="middle" fill="#4edea3" font-family="Georgia, serif" font-size="15">2 · Automated UX Friction</text>
+  <text x="710" y="152" text-anchor="middle" fill="#4edea3" font-family="Georgia, serif" font-size="15">Diagnostics &amp; CX</text>
+  <text x="710" y="190" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">Aggregate hotspot frictions</text>
+  <text x="710" y="214" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">Across sessions → product</text>
+  <text x="710" y="234" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">iteration (crowd-informed layout)</text>
+  <text x="710" y="268" text-anchor="middle" fill="#6ec8ff" font-family="system-ui,sans-serif" font-size="11">→ CSV / NASA-TLX pilot runner</text>
+  <text x="710" y="290" text-anchor="middle" fill="#6ec8ff" font-family="system-ui,sans-serif" font-size="11">→ design-system recommendations</text>
+
+  <text x="470" y="450" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="12">Both horizons require co-design with people with motor impairments before clinical claims</text>
+</svg>

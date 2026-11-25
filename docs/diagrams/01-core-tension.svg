@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+  <rect width="920" height="520" fill="#0f1419"/>
+  <text x="40" y="42" fill="#ffc174" font-family="Georgia, serif" font-size="22" font-weight="600">Why One Static UI Fails</text>
+  <text x="40" y="66" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="12">Conflicting motor constraints on the same hostile baseline booking task</text>
+
+  <!-- Baseline box (sketchy) -->
+  <path d="M 310 110 Q 308 108 480 112 Q 652 108 650 118 L 648 248 Q 650 262 480 258 Q 312 262 312 248 Z" fill="#12171d" stroke="#d8c3ad" stroke-width="2.2" stroke-linejoin="round"/>
+  <text x="480" y="155" text-anchor="middle" fill="#ffc174" font-family="Georgia, serif" font-size="16">Baseline Concert UI</text>
+  <text x="480" y="180" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">16px seats · edge Confirm · dense map</text>
+  <text x="480" y="202" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">One layout for every motor profile</text>
+
+  <!-- Arrow left -->
+  <path d="M 300 180 Q 220 200 160 250" fill="none" stroke="#ffc174" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="155,248 168,242 165,258" fill="#ffc174"/>
+
+  <!-- Arrow right -->
+  <path d="M 660 180 Q 740 200 800 250" fill="none" stroke="#4edea3" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="805,248 792,242 795,258" fill="#4edea3"/>
+
+  <!-- High jitter branch -->
+  <path d="M 40 270 Q 38 268 250 272 Q 462 268 460 280 L 458 450 Q 460 468 250 464 Q 42 468 42 450 Z" fill="#1a1510" stroke="#ffc174" stroke-width="2.4"/>
+  <text x="250" y="310" text-anchor="middle" fill="#ffc174" font-family="Georgia, serif" font-size="15">High Jitter / Tremor</text>
+  <text x="250" y="338" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">Needs giant spaced targets</text>
+  <text x="250" y="362" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">step_wizard · ZoneCard · RadioPills</text>
+  <text x="250" y="400" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">↑ dwell · ↑ snap · ↑ filter β</text>
+  <text x="250" y="430" text-anchor="middle" fill="#a08e7a" font-family="ui-monospace,monospace" font-size="10">W_min ≈ 80–88px · high travel OK</text>
+
+  <!-- ROM branch -->
+  <path d="M 460 270 Q 458 268 670 272 Q 882 268 880 280 L 878 450 Q 880 468 670 464 Q 462 468 462 450 Z" fill="#0f1a16" stroke="#4edea3" stroke-width="2.4"/>
+  <text x="670" y="310" text-anchor="middle" fill="#4edea3" font-family="Georgia, serif" font-size="15">Restricted Neck ROM</text>
+  <text x="670" y="338" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">Needs compact central hub</text>
+  <text x="670" y="362" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">compact_center_hub · Radial · Stepper</text>
+  <text x="670" y="400" text-anchor="middle" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="11">↓ neck excursion · center-safe zone</text>
+  <text x="670" y="430" text-anchor="middle" fill="#a08e7a" font-family="ui-monospace,monospace" font-size="10">Peak excursion ↓ · W ≈ 48–56px OK</text>
+
+  <text x="460" y="505" text-anchor="middle" fill="#6ec8ff" font-family="system-ui,sans-serif" font-size="12">Same task · opposite adaptations — static design cannot satisfy both</text>
+</svg>

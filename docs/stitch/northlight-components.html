@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary": "#ffc174", "on-surface-variant": "#d8c3ad", "primary-fixed-dim": "#ffb95f", "on-primary-fixed-variant": "#653e00", "background": "#0f1419", "surface-dim": "#0f1419", "surface-container": "#1b2025", "outline": "#a08e7a", "on-secondary-container": "#00311f", "on-tertiary-fixed-variant": "#41474f", "on-error-container": "#ffdad6", "on-secondary-fixed-variant": "#005236", "surface-container-high": "#252a30", "on-primary": "#472a00", "surface-tint": "#ffb95f", "on-background": "#dee3ea", "tertiary": "#c7cdd6", "surface-container-low": "#171c21", "tertiary-container": "#abb1ba", "inverse-on-surface": "#2c3136", "on-tertiary-container": "#3e444b", "inverse-primary": "#855300", "on-primary-fixed": "#2a1700", "error": "#ffb4ab", "tertiary-fixed": "#dde3ec", "on-tertiary": "#2b3138", "error-container": "#93000a", "on-tertiary-fixed": "#161c23", "secondary-container": "#00a572", "surface-variant": "#30353b", "on-secondary-fixed": "#002113", "surface-bright": "#353a3f", "on-error": "#690005", "secondary-fixed-dim": "#4edea3", "surface-container-lowest": "#0a0f14", "on-secondary": "#003824", "tertiary-fixed-dim": "#c1c7d0", "on-primary-container": "#613b00", "secondary-fixed": "#6ffbbe", "on-surface": "#dee3ea", "inverse-surface": "#dee3ea", "secondary": "#4edea3", "surface-container-highest": "#30353b", "primary-fixed": "#ffddb8", "outline-variant": "#534434", "surface": "#0f1419", "primary-container": "#f59e0b" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xl": "3rem", "space-lg": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem", "margin": "2rem", "gutter": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "body-sm": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-lg": ["Inter"], "label-md": ["JetBrains Mono"], "headline-lg": ["Space Grotesk"], "label-sm": ["JetBrains Mono"] }, "fontSize": { "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }], "headline-xl": ["48px", { "lineHeight": "56px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }], "headline-lg": ["36px", { "lineHeight": "44px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } }</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-gutter flex items-center justify-between"><div class="flex items-center gap-space-md"><span class="font-headline-md text-primary tracking-wider uppercase">Northlight</span></div><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a aria-current="page" class="transition-colors px-space-sm py-space-xs bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="events" href="#">Events</a><a class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs" data-path="my-tickets" href="#">My Tickets</a><a class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs" data-path="venues" href="#">Venues</a><a class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-xs" data-path="support" href="#">Support</a></nav><div class="flex items-center gap-space-md"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full text-on-surface">
+<!-- Immersive Event Header -->
+<section class="relative w-full overflow-hidden bg-surface-container py-space-xl px-gutter">
+<div class="absolute inset-0 opacity-20 pointer-events-none bg-cover bg-center" data-alt="An immersive abstract cosmic symphony digital artwork featuring deep navy and amber light trails, swirling nebula clouds, and sharp geometric vector soundwaves across a dark research aesthetic background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCWYsTRJ16A87rt08EBGqcbSY7pzkwJH07XYwnZA5cmvkCLlslUFYj7CJ0x5jH22rGOjY6wRUbQJDnvxgk0dvCNPGyeBd8bPZGKoR0KhPrg3prLKzu5u3lzhCLrE7J6i3EsLBQfxNYROizBGNhOzT3wPgbDMuwORIgBuMlA3xqWjnAzLy7jUD_VU2IRJQOgym9dGutGe7ZxTM7qBd8-vQY2yWjXM5qptJrbDz6raD4erEdF55Q12xi47qoXuPFO-A')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+<div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-space-lg">
+<div class="flex flex-col gap-space-sm max-w-2xl">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-space-xs rounded bg-surface-container-high text-primary font-label-sm uppercase tracking-wider">Live Concert Experience</span>
+<span class="text-on-surface-variant font-label-sm">ID: NL-SYM-2024</span>
+</div>
+<h1 class="text-headline-xl text-on-surface font-headline-xl tracking-tight">Symphony of the Cosmos</h1>
+<p class="text-body-lg text-on-surface-variant">An audiovisual exploration of deep space telemetry transformed into harmonic orchestral compositions, performed live with custom spatial audio arrays.</p>
+</div>
+<div class="flex flex-col gap-space-sm bg-surface-container-high p-space-lg rounded-xl shadow-lg border border-outline-variant/30 min-w-[280px]">
+<div class="flex items-center gap-space-md text-on-surface">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<div>
+<div class="text-body-sm text-on-surface-variant">Date &amp; Time</div>
+<div class="text-headline-sm">Oct 24, 2024 — 20:00 GMT</div>
+</div>
+</div>
+<div class="flex items-center gap-space-md text-on-surface">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div>
+<div class="text-body-sm text-on-surface-variant">Venue</div>
+<div class="text-headline-sm">Grand Oracle Arena, London</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Booking Flow -->
+<section class="max-w-7xl mx-auto w-full px-gutter py-space-xl grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Left Column: Zone Selection -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<div class="flex justify-between items-baseline">
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Select Zone &amp; Seating</h2>
+<span class="text-body-sm text-on-surface-variant font-label-md">3 tiers available</span>
+</div>
+<!-- Zone Cards -->
+<div class="flex flex-col gap-space-md" id="zone-container">
+<!-- Zone 1: VIP Experience (Selected) -->
+<div class="zone-card relative bg-surface-container p-space-lg rounded-xl cursor-pointer transition-all duration-200 border-2 border-primary-container shadow-md" data-price="120" data-zone="VIP Experience">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center mt-1">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="text-headline-sm text-on-surface font-headline-sm">VIP Experience</span>
+<span class="px-space-sm py-0.5 rounded bg-secondary/10 text-secondary font-label-sm">Most Popular</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Includes backstage pass, priority entry, and commemorative acoustic vinyl.</p>
+</div>
+</div>
+<div class="text-right flex sm:flex-col items-baseline sm:items-end justify-between w-full sm:w-auto">
+<span class="text-headline-lg text-primary font-headline-lg">$120</span>
+<span class="text-body-sm text-on-surface-variant">14 seats left</span>
+</div>
+</div>
+</div>
+<!-- Zone 2: Mid Floor -->
+<div class="zone-card relative bg-surface-container p-space-lg rounded-xl cursor-pointer transition-all duration-200 border-2 border-transparent hover:border-outline-variant" data-price="80" data-zone="Mid Floor">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center mt-1">
+<div class="w-3 h-3 rounded-full bg-transparent"></div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="text-headline-sm text-on-surface font-headline-sm">Mid Floor</span>
+</div>
+<p class="text-body-md text-on-surface-variant">General admission floor with unobstructed sightlines and immersive surround sound placement.</p>
+</div>
+</div>
+<div class="text-right flex sm:flex-col items-baseline sm:items-end justify-between w-full sm:w-auto">
+<span class="text-headline-lg text-on-surface font-headline-lg">$80</span>
+<span class="text-body-sm text-on-surface-variant">86 seats left</span>
+</div>
+</div>
+</div>
+<!-- Zone 3: Balcony Tier -->
+<div class="zone-card relative bg-surface-container p-space-lg rounded-xl cursor-pointer transition-all duration-200 border-2 border-transparent hover:border-outline-variant" data-price="50" data-zone="Balcony Tier">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center mt-1">
+<div class="w-3 h-3 rounded-full bg-transparent"></div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="text-headline-sm text-on-surface font-headline-sm">Balcony Tier</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Elevated acoustic seating with panoramic view of the visual dome ceiling display.</p>
+</div>
+</div>
+<div class="text-right flex sm:flex-col items-baseline sm:items-end justify-between w-full sm:w-auto">
+<span class="text-headline-lg text-on-surface font-headline-lg">$50</span>
+<span class="text-body-sm text-on-surface-variant">120 seats left</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ticket Quantity Controls -->
+<div class="mt-space-lg flex flex-col gap-space-md bg-surface-container p-space-lg rounded-xl">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Ticket Quantity</h3>
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-lg">
+<!-- RadioPillGrid -->
+<div class="flex items-center gap-space-sm" id="radio-pill-grid">
+<button class="pill-btn px-space-lg py-space-sm rounded-lg bg-primary-container text-on-primary-container font-semibold transition-all" data-qty="1">1</button>
+<button class="pill-btn px-space-lg py-space-sm rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all" data-qty="2">2</button>
+<button class="pill-btn px-space-lg py-space-sm rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all" data-qty="3">3</button>
+<button class="pill-btn px-space-lg py-space-sm rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all" data-qty="4">4</button>
+</div>
+<!-- LargeStepperControl -->
+<div class="flex items-center bg-surface-container-high rounded-lg overflow-hidden p-1">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-bright transition-colors rounded" id="stepper-minus">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-12 text-center text-headline-sm font-headline-sm text-on-surface" id="stepper-value">1</span>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-bright transition-colors rounded" id="stepper-plus">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Summary & Confirmation Drawer -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<div class="bg-surface-container p-space-lg rounded-xl flex flex-col gap-space-lg sticky top-28 shadow-xl">
+<div class="flex justify-between items-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Order Summary</h3>
+<span class="material-symbols-outlined text-on-surface-variant">receipt_long</span>
+</div>
+<div class="flex flex-col gap-space-md py-space-md border-y border-outline-variant/20">
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Selected Zone</span>
+<span class="text-on-surface font-semibold" id="summary-zone">VIP Experience</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Price per ticket</span>
+<span class="text-on-surface font-mono" id="summary-unit-price">$120.00</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Quantity</span>
+<span class="text-on-surface font-mono" id="summary-qty">1</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Service Fee (HCI Tax)</span>
+<span class="text-on-surface font-mono">$5.00</span>
+</div>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="text-headline-sm text-on-surface">Total</span>
+<span class="text-headline-lg text-primary font-headline-lg font-bold" id="summary-total">$125.00</span>
+</div>
+<!-- Confirm Booking Button -->
+<button class="w-full py-space-md px-space-lg bg-primary-container text-on-primary-container font-headline-sm rounded-xl font-bold flex items-center justify-center gap-space-sm hover:brightness-110 active:scale-[0.99] transition-all shadow-lg" id="confirm-btn">
+<span>Confirm Booking</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<div class="flex items-center justify-center gap-space-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span>Encrypted Secure Checkout Protocol</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive State Management Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const zoneCards = document.querySelectorAll(".zone-card");
+      const pillBtns = document.querySelectorAll(".pill-btn");
+      const stepperMinus = document.getElementById("stepper-minus");
+      const stepperPlus = document.getElementById("stepper-plus");
+      const stepperValue = document.getElementById("stepper-value");
+      
+      const summaryZone = document.getElementById("summary-zone");
+      const summaryUnitPrice = document.getElementById("summary-unit-price");
+      const summaryQty = document.getElementById("summary-qty");
+      const summaryTotal = document.getElementById("summary-total");
+      const confirmBtn = document.getElementById("confirm-btn");
+
+      let currentZone = "VIP Experience";
+      let unitPrice = 120;
+      let quantity = 1;
+
+      function updateSummary() {
+        summaryZone.textContent = currentZone;
+        summaryUnitPrice.textContent = `$${unitPrice}.00`;
+        summaryQty.textContent = quantity;
+        const total = (unitPrice * quantity) + 5;
+        summaryTotal.textContent = `$${total}.00`;
+      }
+
+      // Zone Selection Logic
+      zoneCards.forEach(card => {
+        card.addEventListener("click", () => {
+          zoneCards.forEach(c => {
+            c.classList.remove("border-primary-container");
+            c.classList.add("border-transparent");
+            const indicator = c.querySelector(".w-3");
+            indicator.classList.remove("bg-primary");
+            indicator.classList.add("bg-transparent");
+            const outerIndicator = c.querySelector(".w-6");
+            outerIndicator.classList.remove("border-primary");
+            outerIndicator.classList.add("border-outline");
+          });
+
+          card.classList.remove("border-transparent");
+          card.classList.add("border-primary-container");
+          const indicator = card.querySelector(".w-3");
+          indicator.classList.remove("bg-transparent");
+          indicator.classList.add("bg-primary");
+          const outerIndicator = card.querySelector(".w-6");
+          outerIndicator.classList.remove("border-outline");
+          outerIndicator.classList.add("border-primary");
+
+          currentZone = card.getAttribute("data-zone");
+          unitPrice = parseInt(card.getAttribute("data-price"));
+          updateSummary();
+        });
+      });
+
+      // Quantity Pill Grid Logic
+      pillBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          pillBtns.forEach(b => {
+            b.classList.remove("bg-primary-container", "text-on-primary-container", "font-semibold");
+            b.classList.add("bg-surface-container-high", "text-on-surface");
+          });
+          btn.classList.add("bg-primary-container", "text-on-primary-container", "font-semibold");
+          btn.classList.remove("bg-surface-container-high", "text-on-surface");
+
+          quantity = parseInt(btn.getAttribute("data-qty"));
+          stepperValue.textContent = quantity;
+          updateSummary();
+        });
+      });
+
+      // Stepper Logic
+      stepperMinus.addEventListener("click", () => {
+        if (quantity > 1) {
+          quantity--;
+          stepperValue.textContent = quantity;
+          syncPills();
+          updateSummary();
+        }
+      });
+
+      stepperPlus.addEventListener("click", () => {
+        if (quantity < 10) {
+          quantity++;
+          stepperValue.textContent = quantity;
+          syncPills();
+          updateSummary();
+        }
+      });
+
+      function syncPills() {
+        pillBtns.forEach(b => {
+          const q = parseInt(b.getAttribute("data-qty"));
+          if (q === quantity) {
+            b.classList.add("bg-primary-container", "text-on-primary-container", "font-semibold");
+            b.classList.remove("bg-surface-container-high", "text-on-surface");
+          } else {
+            b.classList.remove("bg-primary-container", "text-on-primary-container", "font-semibold");
+            b.classList.add("bg-surface-container-high", "text-on-surface");
+          }
+        });
+      }
+
+      // Confirmation Action Simulation
+      confirmBtn.addEventListener("click", () => {
+        confirmBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>Processing Secure Handshake...</span>`;
+        setTimeout(() => {
+          confirmBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span><span>Tickets Secured Successfully!</span>`;
+          confirmBtn.classList.remove("bg-primary-container", "text-on-primary-container");
+          confirmBtn.classList.add("bg-secondary-container", "text-on-secondary-container");
+        }, 1500);
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low py-space-xl"><div class="max-w-7xl mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-space-md text-on-surface-variant text-body-sm"><span>© 2024 Northlight Concerts. All rights reserved.</span><div class="flex gap-space-lg"><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a></div></div></footer></body></html>

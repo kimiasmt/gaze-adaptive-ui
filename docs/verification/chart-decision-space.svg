@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480">
+  <rect width="720" height="480" fill="#0f1419"/>
+  <text x="64" y="28" fill="#ffc174" font-size="16" font-family="system-ui" font-weight="600">Decision space · synthetic S01–S10</text>
+  <text x="64" y="44" fill="#a08e7a" font-size="11" font-family="system-ui">jitter_px vs edge_pressure (NOT human participants)</text>
+  <rect x="64" y="48" width="632" height="376" fill="#12171d" stroke="#534434" stroke-opacity="0.4"/>
+  <text x="380" y="448" fill="#a08e7a" font-size="11" text-anchor="middle" font-family="system-ui">jitter_px →</text>
+  <text x="18" y="236" fill="#a08e7a" font-size="11" transform="rotate(-90 18 236)" font-family="system-ui">edge_pressure →</text>
+  <g>
+        <circle cx="246.4" cy="330.0" r="9" fill="#ffc174" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="258.4" y="334.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S01</text>
+      </g>
+<g>
+        <circle cx="341.2" cy="236.0" r="9" fill="#ffc174" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="353.2" y="240.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S02</text>
+      </g>
+<g>
+        <circle cx="424.0" cy="236.0" r="9" fill="#ffc174" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="436.0" y="240.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S03</text>
+      </g>
+<g>
+        <circle cx="97.0" cy="236.0" r="9" fill="#4edea3" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="109.0" y="240.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S04</text>
+      </g>
+<g>
+        <circle cx="105.8" cy="236.0" r="9" fill="#4edea3" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="117.8" y="240.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S05</text>
+      </g>
+<g>
+        <circle cx="115.5" cy="236.0" r="9" fill="#4edea3" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="127.5" y="240.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S06</text>
+      </g>
+<g>
+        <circle cx="183.0" cy="330.0" r="9" fill="#6ec8ff" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="195.0" y="334.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S07</text>
+      </g>
+<g>
+        <circle cx="202.4" cy="424.0" r="9" fill="#6ec8ff" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="214.4" y="428.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S08</text>
+      </g>
+<g>
+        <circle cx="81.4" cy="424.0" r="9" fill="#d8c3ad" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="93.4" y="428.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S09</text>
+      </g>
+<g>
+        <circle cx="91.1" cy="424.0" r="9" fill="#d8c3ad" fill-opacity="0.85" stroke="#0f1419" stroke-width="2"/>
+        <text x="103.1" y="428.0" fill="#d8c3ad" font-size="11" font-family="ui-monospace,monospace">S10</text>
+      </g>
+  <circle cx="64" cy="462" r="5" fill="#ffc174"/><text x="74" y="466" fill="#a08e7a" font-size="10" font-family="system-ui">high_jitter</text><circle cx="224" cy="462" r="5" fill="#4edea3"/><text x="234" y="466" fill="#a08e7a" font-size="10" font-family="system-ui">restricted_rom</text><circle cx="384" cy="462" r="5" fill="#6ec8ff"/><text x="394" y="466" fill="#a08e7a" font-size="10" font-family="system-ui">mixed_impairment</text><circle cx="544" cy="462" r="5" fill="#d8c3ad"/><text x="554" y="466" fill="#a08e7a" font-size="10" font-family="system-ui">baseline_sufficient</text>
+</svg>

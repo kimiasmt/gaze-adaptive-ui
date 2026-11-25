@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+  <rect width="980" height="560" fill="#0f1419"/>
+  <text x="40" y="40" fill="#ffc174" font-family="Georgia, serif" font-size="22" font-weight="600">Closed-Loop Dual-Adaptation Architecture</text>
+  <text x="40" y="62" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="12">Telemetry stays deterministic · GenUI stays schema-constrained · user keeps agency</text>
+
+  <!-- Pipeline nodes -->
+  <g font-family="system-ui,sans-serif">
+    <path d="M 36 120 Q 34 118 170 122 Q 304 118 302 130 L 300 200 Q 302 214 170 210 Q 36 214 38 200 Z" fill="#12171d" stroke="#6ec8ff" stroke-width="2"/>
+    <text x="170" y="155" text-anchor="middle" fill="#6ec8ff" font-size="13" font-weight="600">Webcam</text>
+    <text x="170" y="175" text-anchor="middle" fill="#d8c3ad" font-size="11">MediaPipe FaceLandmarker</text>
+
+    <path d="M 330 120 Q 328 118 464 122 Q 598 118 596 130 L 594 200 Q 596 214 464 210 Q 330 214 332 200 Z" fill="#12171d" stroke="#ffc174" stroke-width="2"/>
+    <text x="464" y="155" text-anchor="middle" fill="#ffc174" font-size="13" font-weight="600">One-Euro Filter</text>
+    <text x="464" y="175" text-anchor="middle" fill="#d8c3ad" font-size="11">Casiez et al. · dwell cursor</text>
+
+    <path d="M 624 120 Q 622 118 790 122 Q 956 118 954 130 L 952 200 Q 954 214 790 210 Q 624 214 626 200 Z" fill="#12171d" stroke="#4edea3" stroke-width="2"/>
+    <text x="790" y="150" text-anchor="middle" fill="#4edea3" font-size="13" font-weight="600">Deterministic HCI Telemetry</text>
+    <text x="790" y="170" text-anchor="middle" fill="#d8c3ad" font-size="11">jitter · overshoot · Midas · edges</text>
+    <text x="790" y="188" text-anchor="middle" fill="#a08e7a" font-size="10">not raw coords → LLM</text>
+  </g>
+
+  <!-- arrows top -->
+  <path d="M 302 160 L 328 160" stroke="#d8c3ad" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 596 160 L 622 160" stroke="#d8c3ad" stroke-width="2"/>
+
+  <!-- LLM box -->
+  <path d="M 220 250 Q 218 248 490 252 Q 760 248 758 262 L 756 340 Q 758 356 490 352 Q 222 356 222 340 Z" fill="#151a12" stroke="#4edea3" stroke-width="2.4"/>
+  <text x="490" y="290" text-anchor="middle" fill="#4edea3" font-family="Georgia, serif" font-size="15">Constrained GenUI LLM (Zod Schema)</text>
+  <text x="490" y="314" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">WCAG-safe registry · fallback composer · Gemini Flash-Lite</text>
+
+  <path d="M 790 210 Q 790 230 620 255" fill="none" stroke="#a08e7a" stroke-width="1.8" stroke-dasharray="5 4"/>
+
+  <!-- Mixed initiative -->
+  <path d="M 260 390 Q 258 388 490 392 Q 720 388 718 400 L 716 470 Q 718 486 490 482 Q 262 486 262 470 Z" fill="#1a1510" stroke="#ffc174" stroke-width="2.4"/>
+  <text x="490" y="430" text-anchor="middle" fill="#ffc174" font-family="Georgia, serif" font-size="15">Mixed-Initiative Proposal</text>
+  <text x="490" y="454" text-anchor="middle" fill="#d8c3ad" font-family="system-ui,sans-serif" font-size="12">User agency · Accept / Reject · spatial memory preserved</text>
+
+  <path d="M 490 352 L 490 388" stroke="#d8c3ad" stroke-width="2"/>
+
+  <!-- Dual feedback -->
+  <path d="M 280 470 Q 120 430 100 220 Q 100 160 160 160" fill="none" stroke="#ffc174" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="70" y="300" fill="#ffc174" font-family="system-ui,sans-serif" font-size="11" transform="rotate(-70 70 300)">Input Policy</text>
+  <text x="55" y="318" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="10" transform="rotate(-70 55 318)">dwell · snap · filter</text>
+
+  <path d="M 700 470 Q 860 430 880 280 Q 890 220 820 200" fill="none" stroke="#4edea3" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="900" y="320" fill="#4edea3" font-family="system-ui,sans-serif" font-size="11" transform="rotate(70 900 320)">UI Layout</text>
+  <text x="915" y="340" fill="#a08e7a" font-family="system-ui,sans-serif" font-size="10" transform="rotate(70 915 340)">components · geometry</text>
+
+  <text x="490" y="535" text-anchor="middle" fill="#6ec8ff" font-family="system-ui,sans-serif" font-size="12">Dual adaptation: layout AND pointing policy update together after consent</text>
+</svg>

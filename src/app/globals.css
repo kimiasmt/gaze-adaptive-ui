@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Northlight tokens from Stitch component redesign */
+:root {
+  --background: #0f1419;
+  --foreground: #dee3ea;
+  --nl-surface: #0f1419;
+  --nl-surface-low: #171c21;
+  --nl-surface-container: #1b2025;
+  --nl-surface-high: #252a30;
+  --nl-surface-highest: #30353b;
+  --nl-primary: #ffc174;
+  --nl-primary-container: #f59e0b;
+  --nl-on-primary: #472a00;
+  --nl-on-primary-container: #613b00;
+  --nl-secondary: #4edea3;
+  --nl-secondary-container: #00a572;
+  --nl-on-surface-variant: #d8c3ad;
+  --nl-outline: #a08e7a;
+  --nl-outline-variant: #534434;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-space-grotesk);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-space-grotesk), var(--font-geist-sans), sans-serif;
+}
+
+/* Virtual cursor owns pointing; hide OS cursor in the booking workspace */
+.hci-workspace,
+.hci-workspace * {
+  cursor: none !important;
+}
+
+/* Researcher HUD uses the normal mouse for inspection / debugging */
+.hci-workspace .researcher-hud,
+.hci-workspace .researcher-hud * {
+  cursor: auto !important;
+}
+
+/* Focus rings for keyboard / dwell debugging */
+[data-hci-id]:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
