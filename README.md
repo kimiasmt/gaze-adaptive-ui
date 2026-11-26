@@ -2,12 +2,14 @@
 
 **Research tagline:** Ability-based dual adaptation — when one static booking UI cannot satisfy both high-tremor and restricted-neck motor needs, the interface and the pointing policy must change together.
 
+**Live demo:** https://kimiasmt.github.io/gaze-adaptive-ui/
+
 ### Quick links
 
 | | |
 |---|---|
-| **Live demo** | [https://marinade1928.github.io/gaze-adaptive-ui/](https://marinade1928.github.io/gaze-adaptive-ui/) |
-| **Variant Gallery** | [/gallery](./src/app/gallery) · on demo: [`…/gallery/`](https://marinade1928.github.io/gaze-adaptive-ui/gallery/) |
+| **Live demo** | https://kimiasmt.github.io/gaze-adaptive-ui/ |
+| **Variant Gallery** | [/gallery](./src/app/gallery) · on demo: https://kimiasmt.github.io/gaze-adaptive-ui/gallery/ |
 | **Gallery PDF** | [`docs/GenUI_Variant_Gallery_Report.pdf`](./docs/GenUI_Variant_Gallery_Report.pdf) |
 | **SPEC** | [`SPEC.md`](./SPEC.md) |
 
@@ -166,7 +168,7 @@ Static export (`output: "export"`). Live LLM calls Gemini from the browser.
 3. Add Actions secret `NEXT_PUBLIC_GEMINI_API_KEY`.
 4. Restrict the key by HTTP referrer to your Pages origin + `http://localhost:3000/*`.
 5. Push to `main` → **Deploy GitHub Pages** publishes  
-   `https://<user>.github.io/gaze-adaptive-ui/`.
+   https://kimiasmt.github.io/gaze-adaptive-ui/ .
 
 ## License
 
