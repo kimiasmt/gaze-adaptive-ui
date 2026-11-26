@@ -6,6 +6,7 @@ import { LayoutGrid, RotateCcw, Sparkles } from "lucide-react";
 import { BaselineConcertApp } from "@/components/booking/BaselineConcertApp";
 import { GenUIRenderer } from "@/components/booking/GenUIRenderer";
 import { AdaptationProposalModal } from "@/components/adaptation/AdaptationProposalModal";
+import { StudyLeftDock } from "@/components/study/StudyLeftDock";
 import { getTelemetryEngine } from "@/lib/telemetry/telemetryEngine";
 import {
   isAdaptationRequestInFlight,
@@ -77,8 +78,8 @@ export function BookingWorkspace() {
   ]);
 
   return (
-    <div className="relative min-h-screen bg-[var(--nl-surface)]">
-      <header className="flex items-center justify-between border-b border-[#534434]/35 bg-[var(--nl-surface)]/90 px-5 py-3 backdrop-blur-xl">
+    <div className="relative h-screen overflow-hidden bg-[var(--nl-surface)]">
+      <header className="relative z-[100] flex h-[var(--nl-header-height)] shrink-0 items-center justify-between border-b border-[#534434]/35 bg-[var(--nl-surface)]/90 px-5 py-3 backdrop-blur-xl">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#ffc174]">
             HCI Research Prototype · Phase 5
@@ -123,27 +124,34 @@ export function BookingWorkspace() {
         </div>
       </header>
 
-      {uiMode === "adapted" && adaptedSpec ? (
-        <>
-          <div className="pointer-events-none fixed left-1/2 top-16 z-[50] -translate-x-1/2">
-            <button
-              type="button"
-              data-hci-id="revert_baseline_btn"
-              data-hci-type="action"
-              onClick={revertToBaseline}
-              className="pointer-events-auto rounded-lg border border-[#534434]/60 bg-[var(--nl-surface-container)]/90 px-3 py-1.5 font-mono text-[11px] text-[#d8c3ad] shadow backdrop-blur hover:border-[#ffc174]/50"
-            >
-              Revert to Baseline
-            </button>
-          </div>
-          <GenUIRenderer
-            key={`${adaptedSpec.detected_profile_archetype}-${adaptedSpec.layout_config.mode}-${adaptedSpec.nodes.map((n) => n.component).join("-")}`}
-            spec={adaptedSpec}
-          />
-        </>
-      ) : (
-        <BaselineConcertApp embedInWorkspace />
-      )}
+      <div className="nl-study-row">
+        <StudyLeftDock />
+        <div className="nl-study-main">
+          {uiMode === "adapted" && adaptedSpec ? (
+            <>
+              <div className="mb-1 flex shrink-0 justify-center">
+                <button
+                  type="button"
+                  data-hci-id="revert_baseline_btn"
+                  data-hci-type="action"
+                  onClick={revertToBaseline}
+                  className="rounded-lg border border-[#534434]/60 bg-[var(--nl-surface-container)]/90 px-3 py-1.5 font-mono text-[11px] text-[#d8c3ad] shadow backdrop-blur hover:border-[#ffc174]/50"
+                >
+                  Revert to Baseline
+                </button>
+              </div>
+              <div className="min-h-0 flex-1">
+                <GenUIRenderer
+                  key={`${adaptedSpec.detected_profile_archetype}-${adaptedSpec.layout_config.mode}-${adaptedSpec.nodes.map((n) => n.component).join("-")}`}
+                  spec={adaptedSpec}
+                />
+              </div>
+            </>
+          ) : (
+            <BaselineConcertApp embedInWorkspace />
+          )}
+        </div>
+      </div>
 
       <AdaptationProposalModal />
     </div>

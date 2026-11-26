@@ -18,6 +18,29 @@
   --nl-on-surface-variant: #d8c3ad;
   --nl-outline: #a08e7a;
   --nl-outline-variant: #534434;
+  /* Left study dock (task + webcam) under the full-width header */
+  --nl-header-height: 4.75rem;
+  --nl-study-dock-width: min(300px, calc(100vw - 2.5rem));
+}
+
+/* Row under header: study dock + main content — fits one viewport, no scroll */
+.nl-study-row {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem 0.75rem;
+  height: calc(100vh - var(--nl-header-height));
+  max-height: calc(100vh - var(--nl-header-height));
+  overflow: hidden;
+}
+
+.nl-study-main {
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 @theme inline {

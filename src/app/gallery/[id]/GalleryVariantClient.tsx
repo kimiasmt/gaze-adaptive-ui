@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { GenUIRenderer } from "@/components/booking/GenUIRenderer";
+import { StudyLeftDock } from "@/components/study/StudyLeftDock";
 import { getGalleryVariant } from "@/lib/genui/galleryVariants";
 import { useAppStore } from "@/store/useAppStore";
 import { useEffect } from "react";
@@ -17,18 +18,25 @@ export function GalleryVariantClient({ id }: { id: string }) {
 
   if (!variant) {
     return (
-      <main className="min-h-screen bg-[var(--nl-surface)] p-8 text-[#dee3ea]">
-        <p>Unknown variant.</p>
-        <Link href="/gallery" className="text-[#4edea3] underline">
-          Back
-        </Link>
-      </main>
+      <div className="hci-workspace relative min-h-screen bg-[var(--nl-surface)] text-[#dee3ea]">
+        <header className="relative z-[100] flex min-h-[var(--nl-header-height)] items-center border-b border-[#534434]/35 px-5 py-3">
+          <Link href="/gallery" className="text-[#4edea3] underline">
+            ← Gallery
+          </Link>
+        </header>
+        <div className="nl-study-row">
+          <StudyLeftDock />
+          <main className="nl-study-main p-4">
+            <p>Unknown variant.</p>
+          </main>
+        </div>
+      </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[var(--nl-surface)]">
-      <header className="border-b border-[#534434]/35 px-5 py-3">
+    <div className="hci-workspace relative min-h-screen bg-[var(--nl-surface)]">
+      <header className="relative z-[100] flex min-h-[var(--nl-header-height)] flex-col justify-center border-b border-[#534434]/35 bg-[var(--nl-surface)]/90 px-5 py-3 backdrop-blur-xl">
         <Link
           href="/gallery"
           className="font-mono text-[11px] text-[#a08e7a] hover:text-[#d8c3ad]"
@@ -46,7 +54,12 @@ export function GalleryVariantClient({ id }: { id: string }) {
           {variant.rule}
         </p>
       </header>
-      <GenUIRenderer spec={variant.spec} />
+      <div className="nl-study-row">
+        <StudyLeftDock />
+        <div className="nl-study-main">
+          <GenUIRenderer spec={variant.spec} />
+        </div>
+      </div>
     </div>
   );
 }

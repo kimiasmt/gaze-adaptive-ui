@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import {
-  ClipboardList,
-  MousePointer2,
-  RotateCcw,
-  Sparkles,
-  Activity,
-} from "lucide-react";
+import { ClipboardList, Activity } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
 import { useGuidedSessionStore } from "@/store/useGuidedSessionStore";
 import {
@@ -179,24 +173,26 @@ export function GuidedTaskCoach() {
 
   if (phase === "idle") {
     return (
-      <div className="fixed bottom-4 left-1/2 z-[95] w-[min(540px,92vw)] -translate-x-1/2 rounded-xl border border-[#f59e0b]/40 bg-[var(--nl-surface-container)]/95 p-4 shadow-xl backdrop-blur">
-        <div className="flex items-start gap-3">
-          <div className="rounded-xl bg-[#f59e0b]/15 p-2 text-[#ffc174]">
-            <ClipboardList className="h-5 w-5" />
+      <div className="w-full shrink-0 rounded-xl border border-[#f59e0b]/40 bg-[var(--nl-surface-container)]/95 p-3 shadow-xl backdrop-blur">
+        <div className="flex items-start gap-2.5">
+          <div className="rounded-lg bg-[#f59e0b]/15 p-1.5 text-[#ffc174]">
+            <ClipboardList className="h-4 w-4" />
           </div>
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#ffc174]">
               Guided HCI task
             </p>
             <h2 className="font-display text-sm font-semibold text-[#dee3ea]">
-              Dynamic booking until metrics stabilize
+              Press Start test to begin
             </h2>
-            <p className="mt-1 text-xs leading-relaxed text-[#d8c3ad]/90">
-              You&apos;ll keep selecting seats / resetting ({GUIDED_MIN_ROUNDS}–
-              {GUIDED_MAX_ROUNDS} rounds) until jitter &amp; overshoots settle.
-              Then Confirm once — Live LLM proposes a personal GenUI; crowd
-              layout uses prior measured sessions only.
-            </p>
+            <ul className="mt-1.5 list-disc space-y-0.5 pl-4 text-[11px] leading-snug text-[#d8c3ad]/90">
+              <li>
+                Select / reset seats ({GUIDED_MIN_ROUNDS}–{GUIDED_MAX_ROUNDS}{" "}
+                rounds) until metrics settle
+              </li>
+              <li>Confirm once for a personal GenUI</li>
+              <li>Head-gaze until final Confirm</li>
+            </ul>
             <button
               type="button"
               data-hci-id="guided_task_start"
@@ -210,10 +206,9 @@ export function GuidedTaskCoach() {
                 selectArmedRef.current = true;
                 startGuidedTask();
               }}
-              className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-[#f59e0b]/50 bg-[#f59e0b]/20 px-3 py-2 text-xs font-medium text-[#ffc174] hover:bg-[#f59e0b]/30"
+              className="mt-3 w-full rounded-lg border border-[#f59e0b]/60 bg-[#f59e0b]/25 px-3 py-2 text-sm font-semibold text-[#ffc174] hover:bg-[#f59e0b]/40"
             >
-              <Sparkles className="h-3.5 w-3.5" />
-              Start guided task (head-gaze)
+              Start test
             </button>
           </div>
         </div>
@@ -221,66 +216,83 @@ export function GuidedTaskCoach() {
     );
   }
 
-  const title =
-    stepKind === "reset"
-      ? `${completedRounds} · Reset booking`
-      : stepKind === "final_confirm"
-        ? `Final · Select ${seatTarget} seats & Confirm`
-        : `Round ${completedRounds + 1} · Select ${seatTarget} seats`;
-
-  const hint =
-    stepKind === "reset"
-      ? "Clear the map (Reset) so we can run another booking pass and firm up telemetry."
-      : stepKind === "final_confirm"
-        ? "Metrics look stable enough for GenUI. Select the seats, then Confirm — mouse returns afterward."
-        : `Dwell-select ${seatTarget} available seats on the dense baseline map.`;
+  const testNumber =
+    stepKind === "reset" ? completedRounds : completedRounds + 1;
+  const testLabel =
+    stepKind === "final_confirm" ? "Final test" : `Test ${testNumber}`;
 
   const latest = metricSnaps[metricSnaps.length - 1];
 
   return (
-    <div className="fixed bottom-4 left-1/2 z-[95] w-[min(580px,94vw)] -translate-x-1/2 rounded-xl border border-[#00a572]/40 bg-[var(--nl-surface)]/96 p-4 shadow-xl backdrop-blur">
-      <div className="mb-2 flex items-center justify-between gap-2">
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#4edea3]">
-          Guided task · dynamic ({completedRounds}/{GUIDED_MAX_ROUNDS} rounds)
+    <div className="w-full shrink-0 rounded-xl border border-[#00a572]/40 bg-[var(--nl-surface)]/96 p-3 shadow-xl backdrop-blur">
+      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#4edea3]">
+        {testLabel}
+      </p>
+
+      {stepKind === "select_seats" && (
+        <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-[#dee3ea]">
+          Select {seatTarget} seats
+        </h3>
+      )}
+
+      {stepKind === "reset" && (
+        <>
+          <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-[#dee3ea]">
+            Test {completedRounds} done
+          </h3>
+          <p className="mt-1 text-xs text-[#d8c3ad]/90">
+            Continue when you&apos;re ready for the next booking pass.
+          </p>
+          <button
+            type="button"
+            data-hci-id="guided_task_reset"
+            data-hci-type="action"
+            onClick={() => {
+              resetBooking();
+              completeReset();
+              setTicketCount(useGuidedSessionStore.getState().seatTarget);
+              selectArmedRef.current = true;
+            }}
+            className="mt-3 w-full rounded-lg border border-[#00a572]/50 bg-[#00a572]/20 px-3 py-2 text-sm font-semibold text-[#4edea3] hover:bg-[#00a572]/30"
+          >
+            Run next test
+          </button>
+        </>
+      )}
+
+      {stepKind === "final_confirm" && (
+        <>
+          <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-[#dee3ea]">
+            Finish this pass
+          </h3>
+          <ul className="mt-2 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-[#d8c3ad]/95">
+            <li>Select {seatTarget} seats</li>
+            <li>Press Confirm</li>
+          </ul>
+        </>
+      )}
+
+      {stepKind === "select_seats" && (
+        <p className="mt-1 text-xs text-[#a08e7a]">
+          {seats.length}/{seatTarget} selected · head-gaze
         </p>
-        <span className="inline-flex items-center gap-1 font-mono text-[10px] text-[#a08e7a]">
-          <MousePointer2 className="h-3 w-3" /> Head-gaze
-        </span>
-      </div>
-      <h3 className="font-display text-sm font-semibold text-[#dee3ea]">
-        {title}
-      </h3>
-      <p className="mt-1 text-xs text-[#d8c3ad]/90">{hint}</p>
-      <div className="mt-2 flex items-start gap-2 rounded-lg border border-[#534434]/40 bg-[var(--nl-surface-low)] px-2.5 py-2">
+      )}
+
+      <div className="mt-2 flex items-start gap-2 rounded-lg border border-[#534434]/40 bg-[var(--nl-surface-low)] px-2 py-1.5">
         <Activity className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#ffc174]" />
         <div className="min-w-0">
-          <p className="text-[11px] text-[#ffc174]/90">{stabilityReason}</p>
+          <p className="text-[11px] leading-snug text-[#ffc174]/90">
+            {stabilityReason}
+          </p>
           {latest && (
             <p className="mt-0.5 font-mono text-[10px] text-[#a08e7a]">
               jitter {latest.jitter_px.toFixed(1)} · overshoots{" "}
-              {latest.overshoot_count} · samples {latest.sample_count} · seats{" "}
-              {seats.length}/{seatTarget}
+              {latest.overshoot_count}
             </p>
           )}
         </div>
       </div>
-      {stepKind === "reset" && (
-        <button
-          type="button"
-          data-hci-id="guided_task_reset"
-          data-hci-type="action"
-          onClick={() => {
-            resetBooking();
-            completeReset();
-            setTicketCount(useGuidedSessionStore.getState().seatTarget);
-            selectArmedRef.current = true;
-          }}
-          className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-[#534434]/50 bg-[var(--nl-surface-container)] px-3 py-2 text-xs text-[#dee3ea] hover:border-[#a08e7a]"
-        >
-          <RotateCcw className="h-3.5 w-3.5" />
-          Reset now
-        </button>
-      )}
+
       {stepKind !== "final_confirm" &&
         completedRounds >= GUIDED_MIN_ROUNDS && (
           <button
@@ -291,7 +303,7 @@ export function GuidedTaskCoach() {
               enterFinalConfirm();
               setTicketCount(useGuidedSessionStore.getState().seatTarget);
             }}
-            className="mt-2 ml-0 font-mono text-[10px] text-[#a08e7a] underline hover:text-[#d8c3ad]"
+            className="mt-2 font-mono text-[10px] text-[#a08e7a] underline hover:text-[#d8c3ad]"
           >
             Metrics feel ready — skip to final Confirm
           </button>

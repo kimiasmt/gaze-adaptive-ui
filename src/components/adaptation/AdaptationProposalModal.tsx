@@ -3,16 +3,26 @@
 import { useAppStore } from "@/store/useAppStore";
 import type { AdaptedUISpec } from "@/lib/genui/schema";
 
+const LAYOUT_LABELS: Record<AdaptedUISpec["layout_config"]["mode"], string> = {
+  step_wizard: "Step wizard",
+  compact_center_hub: "Compact center hub",
+  single_column_large: "Single column large",
+};
+
 export function AdaptationProposalModal() {
   const open = useAppStore((s) => s.adaptationProposalOpen);
   const pending = useAppStore((s) => s.pendingAdaptedSpec);
   const applyPendingAdaptation = useAppStore((s) => s.applyPendingAdaptation);
   const rejectPendingAdaptation = useAppStore((s) => s.rejectPendingAdaptation);
   const adaptationModeBadge = useAppStore((s) => s.adaptationModeBadge);
+  const telemetry = useAppStore((s) => s.telemetryProfile);
 
   if (!open || !pending) return null;
 
   const spec = pending as AdaptedUISpec;
+  const layout = spec.layout_config;
+  const policy = spec.interaction_policy;
+  const designName = LAYOUT_LABELS[layout.mode] ?? layout.mode;
 
   return (
     <div
@@ -24,26 +34,24 @@ export function AdaptationProposalModal() {
     >
       <div className="w-full max-w-lg rounded-xl border border-[#534434]/50 bg-[var(--nl-surface-container)] p-5 shadow-2xl">
         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#ffc174]">
-          Mixed-initiative adaptation · {adaptationModeBadge}
+          Mixed-initiative · {adaptationModeBadge}
         </p>
+        <p className="mt-2 text-xs text-[#a08e7a]">Proposed design</p>
         <h2
           id="adapt-proposal-title"
-          className="font-display mt-1 text-lg font-semibold text-[#dee3ea]"
+          className="font-display text-xl font-semibold text-[#dee3ea]"
         >
-          Suggested UI adaptation
+          {designName}
         </h2>
-        <p className="mt-1 text-xs text-[#a08e7a]">
-          Profile: {spec.detected_profile_archetype.replaceAll("_", " ")}
-        </p>
 
-        <p className="mt-4 text-sm leading-relaxed text-[#d8c3ad]">
-          {spec.rationale}
-        </p>
-
-        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[#dee3ea]">
-          {spec.change_summary.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
+        <ul className="mt-4 list-disc space-y-1.5 pl-5 text-sm text-[#dee3ea]">
+          <li>
+            Jitter {telemetry.jitter_px.toFixed(1)}px · overshoots{" "}
+            {telemetry.overshoot_count}
+          </li>
+          <li>Target ~{layout.min_target_size_px}px</li>
+          <li>Dwell {policy.dwell_time_ms}ms</li>
+          <li>Snap {policy.magnetic_snap_radius_px}px</li>
         </ul>
 
         <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">

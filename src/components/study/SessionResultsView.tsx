@@ -55,15 +55,11 @@ export function SessionResultsView() {
             <h1 className="text-2xl font-semibold tracking-tight text-white">
               Custom GenUI proposals
             </h1>
-            <p className="mt-1 max-w-2xl text-sm text-slate-400">
-              Measured guided-session score{" "}
+            <p className="mt-1 text-sm text-slate-400">
+              Score{" "}
               <span className="font-mono text-amber-300">
                 {proposal.sessionScore.toFixed(1)} / 100
               </span>
-              . Specs below are proposals only — A/B comparison uses real
-              post-Apply telemetry in the Pilot Study runner (no estimated
-              improvement numbers). History: {proposal.historyCount} session
-              {proposal.historyCount === 1 ? "" : "s"}.
             </p>
           </div>
           <button

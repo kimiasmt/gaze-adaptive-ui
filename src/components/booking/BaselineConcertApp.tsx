@@ -55,7 +55,7 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
   return (
     <div
       className={`relative bg-[var(--nl-surface)] text-[#dee3ea] ${
-        embedInWorkspace ? "" : "min-h-screen"
+        embedInWorkspace ? "h-full min-h-0 overflow-hidden" : "min-h-screen"
       }`}
     >
       {!embedInWorkspace && (
@@ -81,9 +81,15 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
         </header>
       )}
 
-      <div className="flex min-h-[calc(100vh-57px)]">
+      <div
+        className={`flex ${
+          embedInWorkspace
+            ? "h-full min-h-0"
+            : "min-h-[calc(100vh-57px)]"
+        }`}
+      >
         {/* Main seat map — Northlight chrome, intentionally dense targets */}
-        <main className="relative flex flex-1 flex-col items-center overflow-hidden px-6 py-8">
+        <main className="relative flex min-h-0 flex-1 flex-col items-center overflow-hidden px-4 py-4">
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.12]"
             style={{

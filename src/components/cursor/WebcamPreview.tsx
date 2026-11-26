@@ -161,7 +161,7 @@ export function WebcamPreview() {
   }, [sensitivity.x, sensitivity.y]);
 
   return (
-    <div className="researcher-hud fixed bottom-4 left-4 z-[90] w-[220px] select-none rounded-lg border border-slate-700/80 bg-[#12171d]/95 shadow-xl backdrop-blur">
+    <div className="researcher-hud w-full shrink-0 select-none rounded-lg border border-slate-700/80 bg-[#12171d]/95 shadow-xl backdrop-blur">
       <div className="flex items-center justify-between gap-2 border-b border-slate-800 px-2.5 py-1.5">
         <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-300">
           <Camera className="h-3.5 w-3.5 text-amber-500" aria-hidden />
