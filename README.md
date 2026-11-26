@@ -19,7 +19,7 @@
 
 This is a **Research-through-Design prototype** built to materialize, test, and communicate a research direction in **Ability-Based Generative UI** and **hands-free accessibility**.
 
-The author framed the HCI problem, defined telemetry metrics and accessibility constraints, and designed the evaluation methodology (guided task → mixed-initiative proposal → counterbalanced pilot runner). **AI-assisted rapid prototyping (Cursor)** accelerated frontend implementation and iteration on interaction concepts — it did not invent the research claims.
+The author framed the HCI problem, defined telemetry metrics and accessibility constraints, and designed the evaluation methodology (guided task → mixed-initiative proposal → counterbalanced pilot runner).
 
 ---
 
