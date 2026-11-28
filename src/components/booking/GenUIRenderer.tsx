@@ -24,26 +24,26 @@ export function GenUIRenderer({ spec }: Props) {
   const safeStep = Math.min(step, Math.max(0, nodes.length - 1));
   const current = nodes[safeStep];
   const widthPct = spec.layout_config.safe_zone_width_percent;
-  const navH = Math.max(
-    48,
-    Math.round(spec.layout_config.min_target_size_px * 0.7),
+  const navH = Math.min(
+    52,
+    Math.max(44, Math.round(spec.layout_config.min_target_size_px * 0.55)),
   );
   const isLast = safeStep >= nodes.length - 1;
 
   return (
     <div className="flex h-full min-h-0 w-full flex-col items-center justify-center overflow-hidden bg-[#0f1419] px-3 py-2">
       <div
-        className="flex max-h-full w-full min-h-0 flex-col"
+        className="flex h-full max-h-full w-full min-h-0 flex-col"
         style={{
           maxWidth: `${Math.min(widthPct, 92)}%`,
-          gap: Math.min(spec.layout_config.element_gap_px, 16),
+          gap: Math.min(spec.layout_config.element_gap_px, 10),
         }}
       >
         <div className="shrink-0 text-center">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-emerald-400/80">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-emerald-400/80">
             Adapted UI · {spec.detected_profile_archetype.replaceAll("_", " ")}
           </p>
-          <h2 className="mt-0.5 text-lg font-semibold text-white">
+          <h2 className="mt-0.5 text-base font-semibold text-white">
             Northlight · Ability-based layout
           </h2>
           <p className="mt-0.5 font-mono text-[10px] text-slate-500">
@@ -55,13 +55,13 @@ export function GenUIRenderer({ spec }: Props) {
         </div>
 
         {current && (
-          <section className="min-h-0 flex-1 overflow-hidden rounded-2xl border border-slate-800 bg-[#12171d]/90 p-3">
+          <section className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-[#12171d]/90 p-2.5">
             {current.step_title && (
-              <h3 className="mb-2 shrink-0 text-sm font-medium text-slate-300">
+              <h3 className="mb-1.5 shrink-0 text-sm font-medium text-slate-300">
                 {current.step_title}
               </h3>
             )}
-            <div className="max-h-full overflow-hidden">
+            <div className="min-h-0 flex-1 overflow-hidden">
               {(() => {
                 const Comp = COMPONENT_MAP[current.component];
                 if (!Comp) return null;
@@ -69,7 +69,10 @@ export function GenUIRenderer({ spec }: Props) {
                   <Comp
                     {...current.props}
                     minTargetSizePx={spec.layout_config.min_target_size_px}
-                    elementGapPx={spec.layout_config.element_gap_px}
+                    elementGapPx={Math.min(
+                      spec.layout_config.element_gap_px,
+                      12,
+                    )}
                   />
                 );
               })()}
@@ -77,7 +80,7 @@ export function GenUIRenderer({ spec }: Props) {
           </section>
         )}
 
-        <div className="flex shrink-0 gap-3">
+        <div className="flex shrink-0 gap-3 pb-1">
           <button
             type="button"
             data-hci-id="wizard_back"
@@ -85,7 +88,7 @@ export function GenUIRenderer({ spec }: Props) {
             disabled={safeStep <= 0}
             onClick={() => setStep((s) => Math.max(0, s - 1))}
             className="flex flex-1 items-center justify-center rounded-lg border border-slate-600 bg-slate-900 text-sm font-medium text-slate-100 enabled:hover:bg-slate-800 disabled:opacity-40"
-            style={{ minHeight: navH }}
+            style={{ minHeight: navH, height: navH }}
           >
             Back
           </button>
@@ -98,7 +101,7 @@ export function GenUIRenderer({ spec }: Props) {
                 setStep((s) => Math.min(nodes.length - 1, s + 1))
               }
               className="flex flex-[1.4] items-center justify-center rounded-lg border border-amber-600/50 bg-amber-500/20 text-sm font-medium text-amber-50 hover:bg-amber-500/30"
-              style={{ minHeight: navH }}
+              style={{ minHeight: navH, height: navH }}
             >
               Continue
             </button>

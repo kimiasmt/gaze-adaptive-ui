@@ -191,33 +191,65 @@ export function composeSpecFromTelemetry(
       min_target_size_px: minTarget,
       element_gap_px: gap,
     },
-    nodes: [
-      {
-        node_id: "gen_seat",
-        step_title:
-          layoutMode === "step_wizard" ? `1 · ${seat.title}` : seat.title,
-        component: seat.component,
-        bind_to: "seat_selection",
-        props: seat.props,
-      },
-      {
-        node_id: "gen_tickets",
-        step_title:
-          layoutMode === "step_wizard"
-            ? `2 · ${tickets.title}`
-            : tickets.title,
-        component: tickets.component,
-        bind_to: "ticket_count",
-        props: tickets.props,
-      },
-      {
-        node_id: "gen_confirm",
-        step_title: layoutMode === "step_wizard" ? "3 · Confirm" : "Confirm",
-        component: "ConfirmActionButton",
-        bind_to: "confirm_booking",
-        props: { require_long_dwell_ms: confirmDwell },
-      },
-    ],
+    nodes:
+      // Seat-map flows: tickets first so count is known before picking seats
+      seat.component === "InteractiveSeatMap"
+        ? [
+            {
+              node_id: "gen_tickets",
+              step_title:
+                layoutMode === "step_wizard"
+                  ? `1 · ${tickets.title}`
+                  : tickets.title,
+              component: tickets.component,
+              bind_to: "ticket_count" as const,
+              props: tickets.props,
+            },
+            {
+              node_id: "gen_seat",
+              step_title:
+                layoutMode === "step_wizard" ? `2 · ${seat.title}` : seat.title,
+              component: seat.component,
+              bind_to: "seat_selection" as const,
+              props: seat.props,
+            },
+            {
+              node_id: "gen_confirm",
+              step_title:
+                layoutMode === "step_wizard" ? "3 · Confirm" : "Confirm",
+              component: "ConfirmActionButton" as const,
+              bind_to: "confirm_booking" as const,
+              props: { require_long_dwell_ms: confirmDwell },
+            },
+          ]
+        : [
+            {
+              node_id: "gen_seat",
+              step_title:
+                layoutMode === "step_wizard" ? `1 · ${seat.title}` : seat.title,
+              component: seat.component,
+              bind_to: "seat_selection" as const,
+              props: seat.props,
+            },
+            {
+              node_id: "gen_tickets",
+              step_title:
+                layoutMode === "step_wizard"
+                  ? `2 · ${tickets.title}`
+                  : tickets.title,
+              component: tickets.component,
+              bind_to: "ticket_count" as const,
+              props: tickets.props,
+            },
+            {
+              node_id: "gen_confirm",
+              step_title:
+                layoutMode === "step_wizard" ? "3 · Confirm" : "Confirm",
+              component: "ConfirmActionButton" as const,
+              bind_to: "confirm_booking" as const,
+              props: { require_long_dwell_ms: confirmDwell },
+            },
+          ],
   };
 }
 

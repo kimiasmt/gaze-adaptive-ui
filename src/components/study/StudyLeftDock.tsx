@@ -7,9 +7,10 @@ import { WebcamPreview } from "@/components/cursor/WebcamPreview";
 export function StudyLeftDock() {
   return (
     <aside
-      className="researcher-hud flex h-full w-[var(--nl-study-dock-width)] shrink-0 flex-col gap-2 overflow-hidden"
+      className="relative z-[90] flex h-full w-[var(--nl-study-dock-width)] shrink-0 flex-col gap-2 overflow-hidden"
       aria-label="Study controls"
     >
+      {/* Gaze-dwellable coach (Start test) — not researcher-hud so dwell works */}
       <GuidedTaskCoach />
       <WebcamPreview />
     </aside>

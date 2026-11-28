@@ -36,6 +36,8 @@ type GuidedStore = {
   stabilityReason: string;
   metricSnaps: MetricSnap[];
   proposal: ProposalBundle | null;
+  /** After first guided finish, unlock free explore / Analyze. */
+  guidedCompletedOnce: boolean;
   startGuidedTask: () => void;
   pushMetricSnap: (snap: MetricSnap) => void;
   setStabilityReason: (reason: string) => void;
@@ -54,6 +56,7 @@ export const useGuidedSessionStore = create<GuidedStore>((set, get) => ({
   stabilityReason: "Waiting to start",
   metricSnaps: [],
   proposal: null,
+  guidedCompletedOnce: false,
 
   startGuidedTask: () =>
     set({
@@ -101,6 +104,7 @@ export const useGuidedSessionStore = create<GuidedStore>((set, get) => ({
     set({
       phase: "results",
       proposal: bundle,
+      guidedCompletedOnce: true,
     }),
 
   dismissResults: (opts) =>
@@ -112,5 +116,6 @@ export const useGuidedSessionStore = create<GuidedStore>((set, get) => ({
       stabilityReason: "Waiting to start",
       metricSnaps: [],
       proposal: opts?.clearProposal ? null : state.proposal,
+      guidedCompletedOnce: state.guidedCompletedOnce,
     })),
 }));

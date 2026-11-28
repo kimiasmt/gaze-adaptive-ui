@@ -14,6 +14,7 @@ import {
   zoneForRow,
 } from "@/lib/booking/seatMap";
 import { useAppStore, type ZoneId } from "@/store/useAppStore";
+import { useGuidedSessionStore } from "@/store/useGuidedSessionStore";
 import { TicketCountDropdown } from "@/components/booking/TicketCountDropdown";
 
 /** Stitch Northlight palette — sizes stay hostile (16px seats). */
@@ -42,6 +43,18 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
     isConfirmed,
   } = bookingState;
 
+  const guidedPhase = useGuidedSessionStore((s) => s.phase);
+  const guidedStep = useGuidedSessionStore((s) => s.stepKind);
+  const seatTarget = useGuidedSessionStore((s) => s.seatTarget);
+  const seatsLockedForTickets =
+    guidedPhase === "running" &&
+    (guidedStep === "select_seats" || guidedStep === "final_confirm") &&
+    ticketCount !== seatTarget;
+  const highlightTicketCount =
+    guidedPhase === "running" &&
+    (guidedStep === "select_seats" || guidedStep === "final_confirm") &&
+    ticketCount !== seatTarget;
+
   const total = computeTotal(selectedZone, ticketCount);
   const canConfirm =
     !isConfirmed &&
@@ -61,9 +74,6 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
       {!embedInWorkspace && (
         <header className="flex items-center justify-between border-b border-[#534434]/35 bg-[var(--nl-surface)]/90 px-5 py-3 backdrop-blur-xl">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#ffc174]">
-              HCI Research Prototype · Phase 5
-            </p>
             <h1 className="font-display text-lg font-semibold tracking-tight text-[#dee3ea]">
               Northlight Concert Hall
             </h1>
@@ -112,8 +122,16 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
             data-hci-id="seat_map_svg"
             data-hci-type="seat_map"
             data-hci-dwell="false"
-            className="relative z-[1] rounded-xl border border-[#534434]/40 bg-[var(--nl-surface-container)] p-5 shadow-inner"
+            className={`relative z-[1] rounded-xl border border-[#534434]/40 bg-[var(--nl-surface-container)] p-5 shadow-inner ${
+              seatsLockedForTickets ? "opacity-45" : ""
+            }`}
+            aria-disabled={seatsLockedForTickets}
           >
+            {seatsLockedForTickets && (
+              <p className="mb-3 text-center font-display text-sm font-bold text-[#ffc174]">
+                Set Ticket count to {seatTarget} first
+              </p>
+            )}
             <div className="mb-4 flex justify-center">
               <div
                 className="flex items-center justify-center rounded-t-2xl bg-gradient-to-b from-[#ffc174]/35 to-[#ffc174]/5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#ffc174]"
@@ -174,15 +192,19 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
                       aria-disabled={occupied}
                       aria-pressed={selected}
                       onClick={() => {
+                        if (seatsLockedForTickets) return;
                         if (!occupied) toggleSeat(id, zone);
                       }}
                       onKeyDown={(e) => {
-                        if (occupied) return;
+                        if (occupied || seatsLockedForTickets) return;
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
                           toggleSeat(id, zone);
                         }
                       }}
+                      data-hci-dwell={
+                        seatsLockedForTickets || occupied ? "false" : undefined
+                      }
                     />
                   );
                 }),
@@ -236,7 +258,11 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
 
           <label
             htmlFor="ticket_count_dropdown"
-            className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[#a08e7a]"
+            className={`mb-1.5 font-mono text-[10px] uppercase tracking-[0.12em] ${
+              highlightTicketCount
+                ? "font-bold text-[#ffc174]"
+                : "text-[#a08e7a]"
+            }`}
           >
             Ticket count
           </label>
@@ -251,9 +277,11 @@ export function BaselineConcertApp({ embedInWorkspace = false }: Props) {
             Selected seats
           </div>
           <p className="min-h-[3rem] text-sm text-[#d8c3ad]">
-            {selectedSeats.length === 0
-              ? "None — pick seats on the map"
-              : selectedSeats.join(", ")}
+            {seatsLockedForTickets
+              ? `Locked — set tickets to ${seatTarget} first`
+              : selectedSeats.length === 0
+                ? "None — pick seats on the map"
+                : selectedSeats.join(", ")}
           </p>
 
           <div className="mt-4 space-y-2 border-y border-[#534434]/25 py-4 text-sm">

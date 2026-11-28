@@ -27,8 +27,8 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
     id: "hj-wizard-zones-pills",
     title: "High jitter · wizard · Zone cards + Pills",
     metricBand:
-      "jitter_px > 10 OR overshoot_count ≥ 3; seat-map hotspot / overshoots ≥ 5 → ZoneCardSelector; midas ≥ 1 or overshoots ≥ 3 → RadioPillGrid",
-    rule: "archetype=high_jitter → layout step_wizard → ZoneCardSelector + RadioPillGrid",
+      "Shown when pointer shake is high or the person overshoots small seats often. Heavy seat-map struggle leads to large zone cards; many mis-taps favor ticket pills.",
+    rule: "High jitter profile → step-by-step wizard with zone cards and ticket pills.",
     spec: {
       detected_profile_archetype: "high_jitter",
       rationale:
@@ -75,8 +75,8 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
     id: "hj-wizard-map-stepper",
     title: "High jitter · wizard · Enlarged map + Stepper",
     metricBand:
-      "jitter > 10 OR overshoots ≥ 3; top hotspot seat_* or seat_map_svg > 8s; milder overshoot (<5) / midas 0 → LargeStepper favored in pool",
-    rule: "high_jitter → step_wizard → InteractiveSeatMap(enlarged) + LargeStepperControl",
+      "Shown when tremor is high but the person still needs a real seat map. Targets are enlarged and ticket count uses a big stepper.",
+    rule: "High jitter profile → wizard with an enlarged seat map and large ticket stepper.",
     spec: {
       detected_profile_archetype: "high_jitter",
       rationale:
@@ -102,18 +102,18 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
       },
       nodes: [
         {
-          node_id: "gen_seat",
-          step_title: "1 · Pick seats",
-          component: "InteractiveSeatMap",
-          bind_to: "seat_selection",
-          props: { enlarged: true },
-        },
-        {
           node_id: "gen_tickets",
-          step_title: "2 · Ticket count",
+          step_title: "1 · Ticket count",
           component: "LargeStepperControl",
           bind_to: "ticket_count",
           props: {},
+        },
+        {
+          node_id: "gen_seat",
+          step_title: "2 · Pick seats",
+          component: "InteractiveSeatMap",
+          bind_to: "seat_selection",
+          props: { enlarged: true },
         },
         confirm("3 · Confirm", 1150),
       ],
@@ -123,8 +123,8 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
     id: "hj-column-zones-stepper",
     title: "High jitter · single column · Zones + Stepper",
     metricBand:
-      "Same high_jitter band; rule composer prefers single_column_large when seat-map friction is milder",
-    rule: "high_jitter → single_column_large → ZoneCardSelector + LargeStepperControl",
+      "Same high-tremor situation, but seat-map friction is milder — so everything stays in one tall column of large controls.",
+    rule: "High jitter profile → single large column with zone cards and a ticket stepper.",
     spec: {
       detected_profile_archetype: "high_jitter",
       rationale:
@@ -171,8 +171,8 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
     id: "rom-hub",
     title: "Restricted ROM · compact center hub",
     metricBand:
-      "edge_struggle_zones includes outer (top_left/right, bottom_left/right, or edges) AND jitter_px ≤ 10 AND NOT (overshoots ≥ 3)",
-    rule: "archetype=restricted_rom → always CompactRadialZoneHub + CompactCenterStepper",
+      "Shown when the person struggles near screen edges (corners or outer zones), while hand/tremor stay relatively steady — not a high-overshoot case.",
+    rule: "Restricted neck range → keep controls in a compact center hub (radial zones + small stepper).",
     spec: {
       detected_profile_archetype: "restricted_rom",
       rationale:
@@ -219,8 +219,8 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
     id: "mixed-column-map-stepper",
     title: "Mixed impairment · column · Map + Stepper",
     metricBand:
-      "midas_touch_errors ≥ 2, with jitter ≤ 10 and overshoots < 3, and no outer-edge trigger (else ROM/high_jitter wins first)",
-    rule: "mixed_impairment → single_column_large → InteractiveSeatMap + LargeStepperControl",
+      "Shown when accidental re-taps (Midas touch) show up, without extreme tremor or edge-reach problems.",
+    rule: "Mixed impairment → one large column with an enlarged map and ticket stepper.",
     spec: {
       detected_profile_archetype: "mixed_impairment",
       rationale:
@@ -246,20 +246,20 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
       },
       nodes: [
         {
-          node_id: "gen_seat",
-          step_title: "Seats",
-          component: "InteractiveSeatMap",
-          bind_to: "seat_selection",
-          props: { enlarged: true },
-        },
-        {
           node_id: "gen_tickets",
-          step_title: "Tickets",
+          step_title: "1 · Ticket count",
           component: "LargeStepperControl",
           bind_to: "ticket_count",
           props: {},
         },
-        confirm("Confirm", 1100),
+        {
+          node_id: "gen_seat",
+          step_title: "2 · Pick seats",
+          component: "InteractiveSeatMap",
+          bind_to: "seat_selection",
+          props: { enlarged: true },
+        },
+        confirm("3 · Confirm", 1100),
       ],
     },
   },
@@ -267,8 +267,8 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
     id: "base-column-map-dropdown",
     title: "Baseline sufficient · mild enlarge + Dropdown",
     metricBand:
-      "jitter ≤ 10, overshoots < 3, midas < 2, and no outer edge_struggle (or jitter low enough that ROM/high don't fire)",
-    rule: "baseline_sufficient → often InteractiveSeatMap + DropdownSelect",
+      "Shown when motion looks calm: low shake, few overshoots, little accidental re-tap, and no edge struggle.",
+    rule: "Baseline-sufficient profile → mildly enlarged map with a familiar ticket dropdown.",
     spec: {
       detected_profile_archetype: "baseline_sufficient",
       rationale:
@@ -294,20 +294,20 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
       },
       nodes: [
         {
-          node_id: "gen_seat",
-          step_title: "Seats",
-          component: "InteractiveSeatMap",
-          bind_to: "seat_selection",
-          props: { enlarged: true },
-        },
-        {
           node_id: "gen_tickets",
-          step_title: "Tickets",
+          step_title: "1 · Ticket count",
           component: "DropdownSelect",
           bind_to: "ticket_count",
           props: {},
         },
-        confirm("Confirm", 800),
+        {
+          node_id: "gen_seat",
+          step_title: "2 · Pick seats",
+          component: "InteractiveSeatMap",
+          bind_to: "seat_selection",
+          props: { enlarged: true },
+        },
+        confirm("3 · Confirm", 800),
       ],
     },
   },
@@ -315,8 +315,8 @@ export const GALLERY_VARIANTS: GalleryVariant[] = [
     id: "base-wizard-zones-stepper",
     title: "Baseline sufficient · wizard · Zones + Stepper",
     metricBand:
-      "Same calm metrics as baseline; deterministic gallery variant showing an optional mild wizard upgrade",
-    rule: "baseline_sufficient → step_wizard → ZoneCardSelector + LargeStepperControl",
+      "Same calm metrics as baseline, offered as a clearer step-by-step option when a mild upgrade still helps.",
+    rule: "Baseline-sufficient profile → optional wizard with zone cards and a ticket stepper.",
     spec: {
       detected_profile_archetype: "baseline_sufficient",
       rationale:

@@ -5,6 +5,7 @@ import {
   scoreSession,
   type MetricSnapshot,
 } from "@/lib/telemetry/sessionScore";
+import { buildCrowdSeedSessions } from "@/lib/study/crowdSeed";
 
 const STORAGE_KEY = "gaze_adaptive_session_history_v1";
 
@@ -27,6 +28,23 @@ export function loadSessionHistory(): StoredSession[] {
     return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
+  }
+}
+
+/**
+ * Ensures diverse prior sessions exist in localStorage so crowd-informed
+ * GenUI differs from a single personal run on a fresh browser.
+ */
+export function ensureCrowdHistorySeed(): void {
+  if (typeof window === "undefined") return;
+  try {
+    const prev = loadSessionHistory();
+    if (prev.some((h) => h.id.startsWith("seed_"))) return;
+    const seeds = buildCrowdSeedSessions();
+    const next = [...seeds, ...prev].slice(-40);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  } catch {
+    /* ignore quota / private mode */
   }
 }
 

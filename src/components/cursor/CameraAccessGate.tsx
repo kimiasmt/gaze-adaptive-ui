@@ -134,16 +134,17 @@ export function CameraAccessGate() {
 
         <ul className="mt-4 space-y-2 text-xs text-[#a08e7a]">
           <li className="flex gap-2">
-            <Laptop className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#4edea3]" />
-            Prefer Chrome on a laptop with a front camera over HTTPS.
-          </li>
-          <li className="flex gap-2">
             <Camera className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#ffc174]" />
-            Allow camera when prompted — FaceLandmarker stays on-device.
+            <span className="font-semibold text-[#ffc174]">
+              Webcam is used only for local head-gaze tracking in your browser.
+              Frames stay on this device — nothing is uploaded, recorded, or
+              sent to a server.
+            </span>
           </li>
           <li className="flex gap-2">
-            <MousePointer2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#6ec8ff]" />
-            Mouse fallback moves the virtual cursor with your pointer.
+            <Laptop className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#4edea3]" />
+            Camera stays local: FaceLandmarker runs on-device; we never store or
+            stream your video.
           </li>
         </ul>
 

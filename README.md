@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | **Live demo** | https://kimiasmt.github.io/gaze-adaptive-ui/ |
-| **Variant Gallery** | [/gallery](./src/app/gallery) · on demo: https://kimiasmt.github.io/gaze-adaptive-ui/gallery/ |
+| **Adaptation Catalog** | [/gallery](./src/app/gallery) · on demo: https://kimiasmt.github.io/gaze-adaptive-ui/gallery/ |
 | **Gallery PDF** | [`docs/GenUI_Variant_Gallery_Report.pdf`](./docs/GenUI_Variant_Gallery_Report.pdf) |
 | **SPEC** | [`SPEC.md`](./SPEC.md) |
 
@@ -156,7 +156,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 1. First load: **Enable webcam** or **Use mouse simulator**.
 2. Interact → **Analyze Telemetry** (Live LLM via Gemini) or start the **guided task**.
-3. Open **Variant Gallery** in the header (or `/gallery`).
+3. Open **Adaptation Catalog** in the header (or `/gallery`).
 4. Researcher drawer: perturbations (`Simulate Restricted Neck ROM`), pilot study, CSV export.
 
 ### Deploy — GitHub Pages

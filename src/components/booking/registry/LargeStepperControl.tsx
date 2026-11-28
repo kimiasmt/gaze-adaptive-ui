@@ -31,14 +31,16 @@ export function LargeStepperControl({
     }
   };
 
+  const btnH = Math.min(Math.max(minTargetSizePx, 48), 64);
+
   return (
-    <div className="w-full rounded-xl bg-[#1b2025] p-5">
-      <h3 className="font-display mb-4 text-base font-medium text-[#dee3ea]">
+    <div className="w-full rounded-xl bg-[#1b2025] p-3">
+      <h3 className="font-display mb-2 text-sm font-medium text-[#dee3ea]">
         Ticket quantity
       </h3>
       <div
         className="flex w-full items-stretch overflow-hidden rounded-lg bg-[#252a30] p-1"
-        style={{ gap: elementGapPx, minHeight: minTargetSizePx }}
+        style={{ gap: elementGapPx, minHeight: btnH }}
       >
         <button
           type="button"
@@ -46,10 +48,10 @@ export function LargeStepperControl({
           data-hci-type="action"
           onClick={() => apply(booking.ticketCount - 1)}
           className="flex flex-1 items-center justify-center rounded-md text-[#dee3ea] transition hover:bg-[#30353b]"
-          style={{ minHeight: Math.max(minTargetSizePx - 8, 56) }}
+          style={{ minHeight: btnH - 4 }}
           aria-label="Decrease ticket count"
         >
-          <Minus className="h-7 w-7" strokeWidth={2.25} />
+          <Minus className="h-6 w-6" strokeWidth={2.25} />
         </button>
         <div
           className="flex min-w-[5.5rem] flex-col items-center justify-center px-3"
@@ -68,10 +70,10 @@ export function LargeStepperControl({
           data-hci-type="action"
           onClick={() => apply(booking.ticketCount + 1)}
           className="flex flex-1 items-center justify-center rounded-md text-[#dee3ea] transition hover:bg-[#30353b]"
-          style={{ minHeight: Math.max(minTargetSizePx - 8, 56) }}
+          style={{ minHeight: btnH - 4 }}
           aria-label="Increase ticket count"
         >
-          <Plus className="h-7 w-7" strokeWidth={2.25} />
+          <Plus className="h-6 w-6" strokeWidth={2.25} />
         </button>
       </div>
     </div>

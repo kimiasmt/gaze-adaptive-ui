@@ -7,6 +7,7 @@ import { BaselineConcertApp } from "@/components/booking/BaselineConcertApp";
 import { GenUIRenderer } from "@/components/booking/GenUIRenderer";
 import { AdaptationProposalModal } from "@/components/adaptation/AdaptationProposalModal";
 import { StudyLeftDock } from "@/components/study/StudyLeftDock";
+import { GuidedTutorialOverlay } from "@/components/study/GuidedTutorialOverlay";
 import { getTelemetryEngine } from "@/lib/telemetry/telemetryEngine";
 import {
   isAdaptationRequestInFlight,
@@ -14,6 +15,7 @@ import {
 } from "@/lib/genui/adaptClient";
 import { useAppStore } from "@/store/useAppStore";
 import { useGuidedSessionStore } from "@/store/useGuidedSessionStore";
+import { ensureCrowdHistorySeed } from "@/lib/study/sessionHistory";
 
 export function BookingWorkspace() {
   const uiMode = useAppStore((s) => s.uiMode);
@@ -27,10 +29,21 @@ export function BookingWorkspace() {
   const frictionAutoPrompted = useAppStore((s) => s.frictionAutoPrompted);
   const setFrictionAutoPrompted = useAppStore((s) => s.setFrictionAutoPrompted);
   const guidedPhase = useGuidedSessionStore((s) => s.phase);
+  const guidedCompletedOnce = useGuidedSessionStore(
+    (s) => s.guidedCompletedOnce,
+  );
+  const analyzeLocked =
+    guidedPhase === "running" ||
+    (guidedPhase === "idle" && !guidedCompletedOnce);
 
   const analyzingRef = useRef(false);
 
+  useEffect(() => {
+    ensureCrowdHistorySeed();
+  }, []);
+
   const analyze = useCallback(async () => {
+    if (analyzeLocked) return;
     if (analyzingRef.current || isAdaptationRequestInFlight()) return;
     analyzingRef.current = true;
     try {
@@ -46,17 +59,17 @@ export function BookingWorkspace() {
       analyzingRef.current = false;
     }
   }, [
+    analyzeLocked,
     openAdaptationProposal,
     setAdaptationModeBadge,
     setLastAdaptedSpecJson,
     setTelemetryProfile,
   ]);
 
-  // Auto-trigger when friction threshold crosses (once per session until reset)
-  // Skip during guided task — results panel owns adaptation after Confirm.
+  // Auto-trigger only after guided study unlocked free explore
   useEffect(() => {
     const id = window.setInterval(() => {
-      if (guidedPhase === "running" || guidedPhase === "results") return;
+      if (!guidedCompletedOnce || guidedPhase === "running") return;
       if (frictionAutoPrompted) return;
       if (isAdaptationRequestInFlight()) return;
       if (useAppStore.getState().adaptationProposalOpen) return;
@@ -72,6 +85,7 @@ export function BookingWorkspace() {
   }, [
     analyze,
     frictionAutoPrompted,
+    guidedCompletedOnce,
     guidedPhase,
     setFrictionAutoPrompted,
     setTelemetryProfile,
@@ -81,9 +95,6 @@ export function BookingWorkspace() {
     <div className="relative h-screen overflow-hidden bg-[var(--nl-surface)]">
       <header className="relative z-[100] flex h-[var(--nl-header-height)] shrink-0 items-center justify-between border-b border-[#534434]/35 bg-[var(--nl-surface)]/90 px-5 py-3 backdrop-blur-xl">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#ffc174]">
-            HCI Research Prototype · Phase 5
-          </p>
           <h1 className="font-display text-lg font-semibold tracking-wider text-[#ffc174]">
             Northlight{" "}
             <span className="font-normal tracking-tight text-[#dee3ea]">
@@ -99,14 +110,20 @@ export function BookingWorkspace() {
             className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#534434]/50 bg-[var(--nl-surface-container)] px-2.5 text-xs text-[#d8c3ad] hover:border-[#a08e7a]"
           >
             <LayoutGrid className="h-3.5 w-3.5" aria-hidden />
-            Variant Gallery
+            Adaptation Catalog
           </Link>
           <button
             type="button"
             data-hci-id="analyze_telemetry_btn"
             data-hci-type="action"
+            disabled={analyzeLocked}
             onClick={() => void analyze()}
-            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#f59e0b]/50 bg-[#f59e0b]/15 px-2.5 text-xs font-medium text-[#ffc174] hover:bg-[#f59e0b]/25"
+            title={
+              analyzeLocked
+                ? "Complete the guided Start test first"
+                : undefined
+            }
+            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#f59e0b]/50 bg-[#f59e0b]/15 px-2.5 text-xs font-medium text-[#ffc174] hover:bg-[#f59e0b]/25 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Sparkles className="h-3.5 w-3.5" aria-hidden />
             Analyze Telemetry & Suggest Adaptation
@@ -126,7 +143,7 @@ export function BookingWorkspace() {
 
       <div className="nl-study-row">
         <StudyLeftDock />
-        <div className="nl-study-main">
+        <div className="nl-study-main relative">
           {uiMode === "adapted" && adaptedSpec ? (
             <>
               <div className="mb-1 flex shrink-0 justify-center">
@@ -150,6 +167,7 @@ export function BookingWorkspace() {
           ) : (
             <BaselineConcertApp embedInWorkspace />
           )}
+          <GuidedTutorialOverlay />
         </div>
       </div>
 
