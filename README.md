@@ -1,6 +1,6 @@
 # Gaze-Adaptive Constrained Generative UI
 
-**Research tagline:** Ability-based dual adaptation — when one static booking UI cannot satisfy both high-tremor and restricted-neck motor needs, the interface and the pointing policy must change together.
+**Research tagline:** When tremor and limited neck range pull the UI in opposite directions, one fixed booking screen cannot serve both. This prototype adapts the layout and the gaze pointing behavior together.
 
 **Live demo:** https://kimiasmt.github.io/gaze-adaptive-ui/
 
@@ -15,37 +15,37 @@
 
 ---
 
-## About This Prototype (Transparent Framing)
+## What this is
 
-This is a **Research-through-Design prototype** built to materialize, test, and communicate a research direction in **Ability-Based Generative UI** and **hands-free accessibility**.
+A research prototype for generative interfaces that adapt to what a person can do, using hands free **head gaze** input.
 
-The author framed the HCI problem, defined telemetry metrics and accessibility constraints, and designed the evaluation methodology (guided task → mixed-initiative proposal → counterbalanced pilot runner).
+I defined the **HCI problem**, the **telemetry metrics**, and the **accessibility constraints**, and set up a small evaluation path: a **guided task**, a proposal the user can **accept or reject**, and an optional balanced **pilot runner**.
 
 ---
 
-## The Core HCI Problem (Why Static Design Fails)
+## The core HCI problem
 
-A dense concert-booking baseline (16px seats, edge Confirm) creates **conflicting motor constraints**:
+The baseline is a dense concert booking screen: small 16px seats and a Confirm button near the edge. That layout creates two needs that fight each other:
 
-- **High jitter / tremor** needs larger, spaced targets and longer dwell — often a step wizard far from the edges.
-- **Restricted neck ROM** needs a **compact central hub** so peak neck excursion stays low.
+- **High tremor** needs larger, more spaced targets and a longer dwell. A step-by-step wizard away from the edges usually helps.
+- **Limited neck range** needs a compact hub near the center of the screen so the head does not travel as far.
 
-One static layout cannot optimize both. Intra-user neck fatigue can flip which constraint dominates mid-session.
+One fixed layout cannot serve both well. Neck fatigue can also shift which need matters more during the same session.
 
 ![Why one static UI fails](./docs/diagrams/01-core-tension.svg)
 
 ---
 
-## Visual Proof — Two Opposite Adaptations from One Baseline
+## Two adaptations from the same baseline
 
-| High Jitter → spaced wizard | Restricted ROM → compact hub |
+| High tremor → spaced wizard | Limited neck range → compact hub |
 |---|---|
-| ![High jitter GenUI](./docs/genui-gallery/genui-hj-wizard-zones-pills.png) | ![ROM hub GenUI](./docs/genui-gallery/genui-rom-hub.png) |
-| **Triggers:** high `jitter_px`, seat-map overshoots | **Triggers:** outer `edge_struggle_zones`, low jitter |
-| **Layout:** `step_wizard` · `ZoneCardSelector` · `RadioPillGrid` | **Layout:** `compact_center_hub` · `CompactRadialZoneHub` · `CompactCenterStepper` |
-| **Policy:** ↑ dwell, ↑ magnetic snap, stronger One-Euro | **Policy:** center-safe zone, shorter travel, moderate targets |
+| ![High tremor GenUI](./docs/genui-gallery/genui-hj-wizard-zones-pills.png) | ![Neck range GenUI](./docs/genui-gallery/genui-rom-hub.png) |
+| **What triggers it:** high jitter, many seat map overshoots | **What triggers it:** struggle near screen edges, low jitter |
+| **Layout:** step wizard with larger zone and seat controls | **Layout:** compact hub near the center of the screen |
+| **Pointing:** longer dwell, stronger snap, heavier smoothing | **Pointing:** keep work in a center safe area, shorter travel |
 
-Dual adaptation means **layout/components** and **input policy** (dwell · snap · filter) update together after explicit user consent.
+Both the **layout** and the **pointing behavior** (dwell, snap, filter) change together, and only after the user accepts the proposal.
 
 ---
 
